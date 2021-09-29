@@ -8,7 +8,7 @@ import yfinance as yf
 from datetime import date
 
 
-START = "2015-01-01"
+START = "2000-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
 
@@ -52,7 +52,7 @@ df_train = df_train.rename(columns={"Date":"ds","Close":"y"})
 # st.title("Training Data")
 # st.write(df_train)
 
-model =Prophet()
+model =Prophet(daily_seasonality = True)
 model.fit(df_train)
 
 future= model.make_future_dataframe(periods=period)
